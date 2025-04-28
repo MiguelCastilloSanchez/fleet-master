@@ -5,17 +5,10 @@ package com.example.fleetmaster.usecase.vehicle.dto;
 // respecting the decoupling of the use cases layer.
 public interface IVehicleUpdateData {
     
-    String brand();
-
-    String vin();
-
     String plate();
-    
-    String purchaseDate();
 
     double cost();
 
     String photoUrl();
 
-    String registrationDate();
 }

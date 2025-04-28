@@ -5,6 +5,8 @@ package com.example.fleetmaster.infrastructure.config.db.schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 import com.example.fleetmaster.entity.vehicle.model.Vehicle;
 
 @Entity
@@ -24,9 +26,8 @@ public class VehicleSchema extends AbstractEntitySchema<Long>{
     @Column(length = 10, nullable = false)
     private String plate;
 
-    @NotBlank
     @Column(nullable = false)
-    private String purchaseDate;
+    private LocalDate purchaseDate;
 
     @Column(nullable = false)
     private double cost;
@@ -35,11 +36,10 @@ public class VehicleSchema extends AbstractEntitySchema<Long>{
     @Column(nullable = true)
     private String photoUrl;
 
-    @NotBlank
     @Column(nullable = false)
-    private String registrationDate;
+    private LocalDate registrationDate;
 
-    public VehicleSchema(String brand, String vin, String plate, String purchaseDate, double cost, String photoUrl, String registrationDate){
+    public VehicleSchema(String brand, String vin, String plate, LocalDate purchaseDate, double cost, String photoUrl, LocalDate registrationDate){
         this.brand = brand;
         this.vin = vin;
         this.plate = plate;
@@ -63,7 +63,7 @@ public class VehicleSchema extends AbstractEntitySchema<Long>{
         this.registrationDate = vehicle.getRegistrationDate();
     }
 
-    public VehicleSchema(Long id, String brand, String vin, String plate, String purchaseDate, double cost, String photoUrl, String registrationDate){
+    public VehicleSchema(Long id, String brand, String vin, String plate, LocalDate purchaseDate, double cost, String photoUrl, LocalDate registrationDate){
         this.setId(id);
         this.brand = brand;
         this.vin = vin;
@@ -98,11 +98,11 @@ public class VehicleSchema extends AbstractEntitySchema<Long>{
         this.plate = plate;
     }
     
-    public String getPurchaseDate() {
+    public LocalDate getPurchaseDate() {
         return purchaseDate;
     }
     
-    public void setPurchaseDate(String purchaseDate) {
+    public void setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
@@ -122,11 +122,11 @@ public class VehicleSchema extends AbstractEntitySchema<Long>{
         this.photoUrl = photoUrl;
     }
     
-    public String getRegistrationDate() {
+    public LocalDate getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(String registrationDate){
+    public void setRegistrationDate(LocalDate registrationDate){
         this.registrationDate = registrationDate;
     }
 

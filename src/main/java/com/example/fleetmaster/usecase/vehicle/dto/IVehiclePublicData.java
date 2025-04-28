@@ -1,5 +1,7 @@
 package com.example.fleetmaster.usecase.vehicle.dto;
 
+import java.time.LocalDate;
+
 // DTO (Data Transfer Object) interface to invert spring boot lib dependencies,
 // respecting the decoupling of the use cases layer.
 public interface IVehiclePublicData {
@@ -12,12 +14,12 @@ public interface IVehiclePublicData {
 
     String plate();
 
-    String purchaseDate();
+    LocalDate purchaseDate();
 
     double cost();
 
     String photoUrl();
 
-    String registrationDate();
+    LocalDate registrationDate();
 
 }

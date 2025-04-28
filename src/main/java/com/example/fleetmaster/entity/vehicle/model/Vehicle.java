@@ -8,12 +8,12 @@ public class Vehicle extends AbstractEntity<Long>{
     private String brand;
     private String vin;
     private String plate;
-    private String purchaseDate;
+    private LocalDate purchaseDate;
     private double cost;
     private String photoUrl;
-    private String registrationDate;
+    private LocalDate registrationDate;
 
-    public Vehicle(String brand, String vin, String plate, String purchaseDate, Double cost, String photoUrl, String registrationDate){
+    public Vehicle(String brand, String vin, String plate, LocalDate purchaseDate, Double cost, String photoUrl, LocalDate registrationDate){
         this.brand = brand;
         this.vin = vin;
         this.plate = plate;
@@ -47,11 +47,11 @@ public class Vehicle extends AbstractEntity<Long>{
         this.plate = plate;
     }
     
-    public String getPurchaseDate() {
+    public LocalDate getPurchaseDate() {
         return purchaseDate;
     }
     
-    public void setPurchaseDate(String purchaseDate) {
+    public void setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
     
@@ -71,11 +71,11 @@ public class Vehicle extends AbstractEntity<Long>{
         this.photoUrl = photoUrl;
     }
     
-    public String getRegistrationDate() {
+    public LocalDate getRegistrationDate() {
         return registrationDate;
     }
     
-    public void setRegistrationDate(String registrationDate){
+    public void setRegistrationDate(LocalDate registrationDate){
         this.registrationDate = registrationDate;
     }
 }
