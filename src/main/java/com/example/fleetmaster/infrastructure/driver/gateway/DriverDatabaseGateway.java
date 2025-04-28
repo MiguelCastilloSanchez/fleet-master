@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.fleetmaster.entity.driver.exception.DriverNotFoundException;
 import com.example.fleetmaster.entity.driver.gateway.DriverGateway;
 import com.example.fleetmaster.entity.driver.model.Driver;
 import com.example.fleetmaster.infrastructure.config.db.repository.DriverRepository;
@@ -26,7 +27,9 @@ public class DriverDatabaseGateway implements DriverGateway{
 
     @Override
     public Driver update(Driver driver){
-        return this.driverRepository.save(new DriverSchema(driver)).toDriver();
+        DriverSchema schema = this.driverRepository.findById(driver.getId()).orElseThrow(DriverNotFoundException::new);
+        schema.updateDriver(driver);
+        return this.driverRepository.save(schema).toDriver();
     }
 
     @Override
