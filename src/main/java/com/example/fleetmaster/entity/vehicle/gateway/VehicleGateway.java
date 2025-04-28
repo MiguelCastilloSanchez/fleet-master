@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface VehicleGateway {
-    Vehicle create(Vehicle admin);
-    Vehicle update(Vehicle admin);
+    Vehicle create(Vehicle vehicle);
+    Vehicle update(Vehicle vehicle);
     void delete(Long id);
 
     Optional<Vehicle> findById(Long id);

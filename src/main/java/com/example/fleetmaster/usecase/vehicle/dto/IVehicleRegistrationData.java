@@ -13,11 +13,11 @@ public interface IVehicleRegistrationData {
 
     String plate();
     
-    LocalDate purchaseDate();
+    String purchaseDate();
 
     double cost();
 
     String photoUrl();
 
-    LocalDate registrationDate();
+    String registrationDate();
 }
