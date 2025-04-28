@@ -2,7 +2,6 @@ package com.example.fleetmaster.infrastructure.vehicle.dto;
 
 import java.time.LocalDate;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.fleetmaster.usecase.vehicle.dto.IVehicleRegistrationData;
 
@@ -21,14 +20,12 @@ public record VehicleRegistrationData(
     @NotBlank
     String plate,
 
-    @NotBlank
-    String purchaseDate,
+    LocalDate purchaseDate,
 
     double cost,
 
     @NotBlank
     String photoUrl,
 
-    @NotBlank
-    String registrationDate
+    LocalDate registrationDate
 ) implements IVehicleRegistrationData{}

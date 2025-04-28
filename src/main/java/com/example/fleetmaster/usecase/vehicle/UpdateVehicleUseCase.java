@@ -16,21 +16,10 @@ public class UpdateVehicleUseCase {
     public Vehicle execute(Long id, IVehicleUpdateData data) throws VehicleNotFoundException{
         Vehicle vehicle = this.vehicleGateway.findById(id).orElseThrow(VehicleNotFoundException::new);
 
-        if(data.brand() != null && !data.brand().isBlank()){
-            vehicle.setBrand(data.brand());
-        }
-
-        if(data.vin() != null && !data.vin().isBlank()){
-            vehicle.setVin(data.vin());
-        }
-
         if(data.plate() != null && !data.plate().isBlank()){
             vehicle.setPlate(data.plate());
         }
 
-        if(data.purchaseDate() != null && !data.purchaseDate().isBlank()){
-            vehicle.setPurchaseDate(data.purchaseDate());;
-        }
 
         if(data.cost() > 0){
             vehicle.setCost(data.cost());
@@ -40,9 +29,6 @@ public class UpdateVehicleUseCase {
             vehicle.setPhotoUrl(data.photoUrl());
         }
 
-        if(data.registrationDate() != null && !data.registrationDate().isBlank()){
-            vehicle.setRegistrationDate(data.registrationDate());
-        }
         
 
         return this.vehicleGateway.update(vehicle);
