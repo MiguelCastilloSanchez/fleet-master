@@ -15,6 +15,8 @@ public interface IVehicleRegistrationData {
     
     LocalDate purchaseDate();
 
+    double cost();
+
     String photoUrl();
 
     LocalDate registrationDate();

@@ -16,7 +16,7 @@ public class CreateVehicleUseCase {
     private VehicleGateway vehicleGateway;
 
     public Vehicle execute(IVehicleRegistrationData data){
-        Vehicle vehicle = new Vehicle(data.brand(), data.vin(), data.plate(), data.purchaseDate(), data.photoUrl(), LocalDate.now());
+        Vehicle vehicle = new Vehicle(data.brand(), data.vin(), data.plate(), data.purchaseDate(), data.cost(), data.photoUrl(), LocalDate.now());
         return this.vehicleGateway.create(vehicle);
     }
 }

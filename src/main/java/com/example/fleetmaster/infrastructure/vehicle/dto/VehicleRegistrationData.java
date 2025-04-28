@@ -23,6 +23,9 @@ public record VehicleRegistrationData(
     LocalDate purchaseDate,
 
     @NotBlank
+    double cost,
+
+    @NotBlank
     String photoUrl,
 
     @NotBlank
