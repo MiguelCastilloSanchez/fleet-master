@@ -17,6 +17,8 @@ public interface VehicleRepository extends JpaRepository<VehicleSchema,Long>{
 
     Optional<VehicleSchema> findByPurchaseDate(LocalDate purchaseDate);
 
+    Optional<VehicleSchema> findByCost(Double cost);
+
     Optional<VehicleSchema> findByPhotoUrl(String photoUrl);
 
     Optional<VehicleSchema> findByRegistrationDate(LocalDate registrationDate);
@@ -29,6 +31,8 @@ public interface VehicleRepository extends JpaRepository<VehicleSchema,Long>{
     Collection<VehicleSchema> findAllByPlate(String plate);
 
     Collection<VehicleSchema> findAllByPurchaseDate(LocalDate purchaseDate);
+
+    Collection<VehicleSchema> findAllByCost(Double cost);
 
     Collection<VehicleSchema> findAllByPhotoUrl(String photoUrl);
     
