@@ -5,11 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.fleetmaster.entity.vehicle.exception.VehicleNotFoundException;
 import com.example.fleetmaster.infrastructure.vehicle.dto.VehiclePublicData;
 import com.example.fleetmaster.usecase.vehicle.GetVehicleUseCase;
 
+@RestController
 public class GetVehicleController {
     
     @Autowired
