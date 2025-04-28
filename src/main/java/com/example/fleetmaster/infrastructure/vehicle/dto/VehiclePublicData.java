@@ -14,13 +14,13 @@ public record VehiclePublicData (
 
     String plate,
 
-    LocalDate purchaseDate,
+    String purchaseDate,
 
     double cost,
 
     String photoUrl,
 
-    LocalDate registrationDate
+    String registrationDate
 )implements IVehiclePublicData{
     public VehiclePublicData(Vehicle vehicle){
         this(
