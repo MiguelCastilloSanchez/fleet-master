@@ -30,6 +30,10 @@ public class VehicleSchema extends AbstractEntitySchema<Long>{
     private LocalDate purchaseDate;
 
     @NotBlank
+    @Column(nullable = false)
+    private double cost;
+
+    @NotBlank
     @Column()
     private String photoUrl;
 
@@ -37,11 +41,12 @@ public class VehicleSchema extends AbstractEntitySchema<Long>{
     @Column(nullable = false)
     private LocalDate registrationDate;
 
-    public VehicleSchema(String brand, String vin, String plate, LocalDate purchaseDate, String photoUrl, LocalDate registrationDate){
+    public VehicleSchema(String brand, String vin, String plate, LocalDate purchaseDate, double cost, String photoUrl, LocalDate registrationDate){
         this.brand = brand;
         this.vin = vin;
         this.plate = plate;
         this.purchaseDate = purchaseDate;
+        this.cost = cost;
         this.photoUrl = photoUrl;
         this.registrationDate = registrationDate;
     }
@@ -55,16 +60,18 @@ public class VehicleSchema extends AbstractEntitySchema<Long>{
         this.vin = vehicle.getVin();
         this.plate = vehicle.getPlate();
         this.purchaseDate = vehicle.getPurchaseDate();
+        this.cost = vehicle.getCost();
         this.photoUrl = vehicle.getPhotoUrl();
         this.registrationDate = vehicle.getRegistrationDate();
     }
 
-    public VehicleSchema(Long id, String brand, String vin, String plate, LocalDate purchaseDate, String photoUrl, LocalDate registrationDate){
+    public VehicleSchema(Long id, String brand, String vin, String plate, LocalDate purchaseDate, double cost, String photoUrl, LocalDate registrationDate){
         this.setId(id);
         this.brand = brand;
         this.vin = vin;
         this.plate = plate;
         this.purchaseDate = purchaseDate;
+        this.cost = cost;
         this.photoUrl = photoUrl;
         this.registrationDate = registrationDate;
     }
@@ -100,6 +107,14 @@ public class VehicleSchema extends AbstractEntitySchema<Long>{
     public void setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
+
+    public double getCost(){
+        return cost;
+    }
+
+    public void setCost(double cost){
+        this.cost = cost;
+    }
     
     public String getPhotoUrl() {
         return photoUrl;
@@ -119,6 +134,7 @@ public class VehicleSchema extends AbstractEntitySchema<Long>{
             this.getVin(),
             this.getPlate(),
             this.getPurchaseDate(),
+            this.getCost(),
             this.photoUrl,
             this.getRegistrationDate()
         );

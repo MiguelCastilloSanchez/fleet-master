@@ -16,18 +16,20 @@ public record VehiclePublicData (
 
     LocalDate purchaseDate,
 
+    double cost,
+
     String photoUrl,
 
     LocalDate registrationDate
 )implements IVehiclePublicData{
     public VehiclePublicData(Vehicle vehicle){
         this(
-            vehicle.getId().
-            toString(),
+            vehicle.getId().toString(),
             vehicle.getBrand(),
             vehicle.getVin(),
             vehicle.getPlate(),
             vehicle.getPurchaseDate(),
+            vehicle.getCost(),
             vehicle.getPhotoUrl(),
             vehicle.getRegistrationDate()
             );
