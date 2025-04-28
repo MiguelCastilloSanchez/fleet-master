@@ -15,19 +15,15 @@ public record DriverRegistrationData(
     @Size(min = 18, max = 18)
     String curp,
 
-    @NotBlank
     LocalDate birthDate,
 
     @NotBlank
     String address,
 
-    @NotBlank
     double salary,
 
-    @NotBlank
     long licenseNumber,
 
-    @NotBlank
     LocalDate systemEntryDate
 ) implements IDriverRegistrationData{
 

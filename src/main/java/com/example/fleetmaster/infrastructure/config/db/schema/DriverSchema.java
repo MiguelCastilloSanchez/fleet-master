@@ -15,7 +15,6 @@ public class DriverSchema extends AbstractEntitySchema<Long>{
     @Column(length = 20, nullable = false)
     private String name;
 
-    @NotBlank
     @Column(nullable = false)
     private LocalDate birthDate;
 
@@ -27,15 +26,12 @@ public class DriverSchema extends AbstractEntitySchema<Long>{
     @Column(nullable = false)
     private String address;
 
-    @NotBlank
     @Column(nullable = false)
     private double salary;
 
-    @NotBlank
     @Column(unique = true, nullable = false)
     private Long licenseNumber;
 
-    @NotBlank
     @Column(nullable = false)
     private LocalDate systemEntryDate;
 
@@ -144,5 +140,15 @@ public class DriverSchema extends AbstractEntitySchema<Long>{
         driver.setId(this.getId());
 
         return driver;
+    }
+
+    public void updateDriver(Driver driver){
+        this.name = driver.getName();
+        this.birthDate = driver.getBirthDate();
+        this.curp = driver.getCurp();
+        this.address = driver.getAddress();
+        this.salary = driver.getSalary();
+        this.licenseNumber = driver.getLicenseNumber();
+        this.systemEntryDate = driver.getSystemEntryDate();
     }
 }
