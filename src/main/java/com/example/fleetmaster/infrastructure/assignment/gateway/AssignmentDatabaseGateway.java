@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.example.fleetmaster.entity.assigment.exception.AssignmentNotFoundException;
@@ -40,17 +41,50 @@ public class AssignmentDatabaseGateway implements AssignmentGateway {
 
         VehicleSchema vehicleSchema = vehicleRepository.findById(assignment.getVehicleId()).orElseThrow(VehicleNotFoundException::new);
 
+        assignmentRepository.findByDriverAndActiveTrue(driverSchema)
+        .ifPresent(a -> { throw new RuntimeException("Driver is already assigned"); });
+
+        assignmentRepository.findByVehicleAndActiveTrue(vehicleSchema)
+        .ifPresent(a -> { throw new RuntimeException("Vehicle is already assigned"); });
+
         return this.assignmentRepository.save(new AssignmentSchema(assignment,driverSchema,vehicleSchema)).toAssignment();
     }
 
     @Override
-    public Assignment delete(Long id) {
+    public Assignment delete(Long id){
         
         AssignmentSchema assignmentSchema = this.assignmentRepository.findById(id).orElseThrow(AssignmentNotFoundException::new);
 
         assignmentSchema.setEndDate(LocalDate.now());
         assignmentSchema.setActive(false);
         return assignmentRepository.save(assignmentSchema).toAssignment();
+    }
+
+    @Override
+    public Assignment update(Assignment assignment, Long id){
+        AssignmentSchema currentAssignment = assignmentRepository.findById(id)
+        .orElseThrow(AssignmentNotFoundException::new);
+
+        DriverSchema driverSchema = driverRepository.findById(assignment.getDriverId())
+        .orElseThrow(DriverNotFoundException::new);
+
+        VehicleSchema vehicleSchema = vehicleRepository.findById(assignment.getVehicleId()).orElseThrow(VehicleNotFoundException::new);
+        assignmentRepository.findByDriverAndActiveTrue(driverSchema).ifPresent(existing -> {
+            if (!existing.getId().equals(currentAssignment.getId())) {
+                throw new RuntimeException("Driver is already assigned in another assignment");
+            }
+        });
+
+        assignmentRepository.findByVehicleAndActiveTrue(vehicleSchema).ifPresent(existing -> {
+            if (!existing.getId().equals(currentAssignment.getId())) {
+                throw new RuntimeException("Vehicle is already assigned in another assignment");
+            }
+        });
+
+        currentAssignment.setActive(false);
+        assignmentRepository.save(currentAssignment);
+    
+        return this.assignmentRepository.save(new AssignmentSchema(assignment,driverSchema,vehicleSchema)).toAssignment();
     }
 
     @Override
@@ -67,5 +101,40 @@ public class AssignmentDatabaseGateway implements AssignmentGateway {
         .findAll().stream().map(AssignmentSchema::toAssignment)
         .toList();
     }
+
+    @Override
+    public List<Assignment> findAllByActive(){
+        return assignmentRepository.findAllByActive(true).stream().map(AssignmentSchema::toAssignment).toList();
+    }
+
+    @Override
+    public Optional<Assignment> findByDriver(Long id){
+        DriverSchema driverSchema = driverRepository.findById(id)
+        .orElseThrow(DriverNotFoundException::new);
+        return assignmentRepository.findByDriverAndActiveTrue(driverSchema).map(AssignmentSchema::toAssignment);
+    }
+
+    @Override
+    public Optional<Assignment> findByVehicle(Long id){
+        VehicleSchema vehicleSchema = vehicleRepository.findById(id)
+        .orElseThrow(VehicleNotFoundException::new);
+        return assignmentRepository.findByVehicleAndActiveTrue(vehicleSchema).map(AssignmentSchema::toAssignment);
+    }
+
+    @Override
+    public List<Assignment> findAllByDriver(Long id){
+        DriverSchema driverSchema = driverRepository.findById(id)
+        .orElseThrow(DriverNotFoundException::new);
+        return assignmentRepository.findAllByDriverOrderByStartDateDesc(driverSchema).stream().map(AssignmentSchema::toAssignment).toList();
+    }
+
+    @Override
+    public List<Assignment> findAllByVehicle(Long id){
+        VehicleSchema vehicleSchema = vehicleRepository.findById(id)
+        .orElseThrow(VehicleNotFoundException::new);
+        return assignmentRepository.findAllByVehicleOrderByStartDateDesc(vehicleSchema).stream().map(AssignmentSchema::toAssignment).toList();
+    }
+
+
     
 }
