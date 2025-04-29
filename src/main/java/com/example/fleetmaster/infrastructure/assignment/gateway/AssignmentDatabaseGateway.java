@@ -82,6 +82,7 @@ public class AssignmentDatabaseGateway implements AssignmentGateway {
         });
 
         currentAssignment.setActive(false);
+        currentAssignment.setEndDate(LocalDate.now());
         assignmentRepository.save(currentAssignment);
     
         return this.assignmentRepository.save(new AssignmentSchema(assignment,driverSchema,vehicleSchema)).toAssignment();
