@@ -19,6 +19,15 @@ public class Assignment extends AbstractEntity<Long> {
         this.active = true;
     }
 
+
+    public Assignment(long driverId, long vehicleId, LocalDate startDate, LocalDate endDate, boolean active) {
+        this.driverId = driverId;
+        this.vehicleId = vehicleId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.active = active;
+    }
+
     public long getDriverId() {
         return driverId;
     }

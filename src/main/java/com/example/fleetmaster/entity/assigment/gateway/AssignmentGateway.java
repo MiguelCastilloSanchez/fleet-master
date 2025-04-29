@@ -8,7 +8,7 @@ import com.example.fleetmaster.entity.assigment.model.Assignment;
 public interface AssignmentGateway {
 
     Assignment create(Assignment assignment);
-    void delete(Long id);
+    Assignment delete(Long id);
 
     Optional<Assignment> findById(Long id);
 

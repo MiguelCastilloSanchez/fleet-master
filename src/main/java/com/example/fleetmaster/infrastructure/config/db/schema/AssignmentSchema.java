@@ -109,7 +109,9 @@ public class AssignmentSchema extends AbstractEntitySchema<Long>{
         Assignment assignment = new Assignment(
             this.getDriver().getId(),
             this.getVehicle().getId(),
-            this.getStartDate()
+            this.getStartDate(),
+            this.getEndDate(),
+            this.isActive()
         );
 
         assignment.setId(this.getId());

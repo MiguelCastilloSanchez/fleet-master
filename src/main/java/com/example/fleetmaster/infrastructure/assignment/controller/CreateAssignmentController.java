@@ -7,21 +7,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.fleetmaster.infrastructure.assignment.dto.AssigmentRegistrationData;
+import com.example.fleetmaster.infrastructure.assignment.dto.AssignmentRegistrationData;
 import com.example.fleetmaster.infrastructure.assignment.dto.AssignmentPublicData;
 import com.example.fleetmaster.usecase.assignment.CreateAssignmentUseCase;
 
 import jakarta.validation.Valid;
 
 @RestController
-public class CreateAssigmentController {
+public class CreateAssignmentController {
 
     @Autowired
     private CreateAssignmentUseCase createAssignmentUseCase;
 
     @PostMapping("/assignment")
     @ResponseStatus(HttpStatus.CREATED)
-    public AssignmentPublicData createAssigment(@Valid @RequestBody AssigmentRegistrationData data){
+    public AssignmentPublicData createAssigment(@Valid @RequestBody AssignmentRegistrationData data){
         return new AssignmentPublicData(createAssignmentUseCase.execute(data));
     }
     

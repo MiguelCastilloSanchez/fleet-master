@@ -8,7 +8,7 @@ import com.example.fleetmaster.usecase.assignment.dto.IAssignmentRegistrationDat
 
 import jakarta.validation.constraints.NotNull;
 
-public record AssigmentRegistrationData(
+public record AssignmentRegistrationData(
 
     @NotNull
     Long driverId,

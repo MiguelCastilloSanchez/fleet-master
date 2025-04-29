@@ -11,9 +11,9 @@ import com.example.fleetmaster.entity.assigment.exception.AssignmentNotFoundExce
 import com.example.fleetmaster.entity.assigment.gateway.AssignmentGateway;
 import com.example.fleetmaster.entity.assigment.model.Assignment;
 import com.example.fleetmaster.entity.driver.exception.DriverNotFoundException;
-import com.example.fleetmaster.entity.driver.model.Driver;
+
 import com.example.fleetmaster.entity.vehicle.exception.VehicleNotFoundException;
-import com.example.fleetmaster.entity.vehicle.model.Vehicle;
+
 import com.example.fleetmaster.infrastructure.config.db.repository.AssignmentRepository;
 import com.example.fleetmaster.infrastructure.config.db.repository.DriverRepository;
 import com.example.fleetmaster.infrastructure.config.db.repository.VehicleRepository;
@@ -21,7 +21,7 @@ import com.example.fleetmaster.infrastructure.config.db.schema.AssignmentSchema;
 import com.example.fleetmaster.infrastructure.config.db.schema.DriverSchema;
 import com.example.fleetmaster.infrastructure.config.db.schema.VehicleSchema;
 @Component
-public class AssigmentDatabaseGateway implements AssignmentGateway {
+public class AssignmentDatabaseGateway implements AssignmentGateway {
 
     @Autowired
     private AssignmentRepository assignmentRepository;
@@ -44,12 +44,13 @@ public class AssigmentDatabaseGateway implements AssignmentGateway {
     }
 
     @Override
-    public void delete(Long id) {
+    public Assignment delete(Long id) {
         
         AssignmentSchema assignmentSchema = this.assignmentRepository.findById(id).orElseThrow(AssignmentNotFoundException::new);
 
         assignmentSchema.setEndDate(LocalDate.now());
         assignmentSchema.setActive(false);
+        return assignmentRepository.save(assignmentSchema).toAssignment();
     }
 
     @Override
