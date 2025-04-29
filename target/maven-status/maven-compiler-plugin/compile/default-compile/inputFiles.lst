@@ -1,4 +1,7 @@
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\entity\AbstractEntity.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\entity\assigment\exception\AssignmentNotFoundException.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\entity\assigment\gateway\AssignmentGateway.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\entity\assigment\model\Assignment.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\entity\driver\exception\DriverNotFoundException.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\entity\driver\gateway\DriverGateway.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\entity\driver\model\Driver.java
@@ -6,9 +9,15 @@ C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fl
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\entity\vehicle\gateway\VehicleGateway.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\entity\vehicle\model\Vehicle.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\FleetmasterApplication.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\controller\CreateAssigmentController.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\dto\AssigmentRegistrationData.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\dto\AssignmentPublicData.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\gateway\AssigmentDatabaseGateway.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\db\repository\AssignmentRepository.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\db\repository\DriverRepository.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\db\repository\VehicleRepository.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\db\schema\AbstractEntitySchema.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\db\schema\AssignmentSchema.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\db\schema\DriverSchema.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\db\schema\VehicleSchema.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\exception\ErrorsHandler.java
@@ -31,6 +40,9 @@ C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fl
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\vehicle\dto\VehicleRegistrationData.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\vehicle\dto\VehicleUpdateData.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\vehicle\gateway\VehicleDatabaseGateway.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\assignment\CreateAssignmentUseCase.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\assignment\dto\IAssignmentPublicData.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\assignment\dto\IAssignmentRegistrationData.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\driver\CreateDriverUseCase.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\driver\DeleteDriverUseCase.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\driver\dto\IDriverPublicData.java
