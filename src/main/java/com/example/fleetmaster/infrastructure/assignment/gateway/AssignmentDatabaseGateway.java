@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.example.fleetmaster.entity.assigment.exception.AssignmentNotFoundException;
@@ -36,16 +35,9 @@ public class AssignmentDatabaseGateway implements AssignmentGateway {
     @Override
     public Assignment create(Assignment assignment){
 
-        DriverSchema driverSchema = driverRepository.findById(assignment.getDriverId())
-        .orElseThrow(DriverNotFoundException::new);
+        DriverSchema driverSchema = driverRepository.findById(assignment.getDriverId()).orElseThrow(DriverNotFoundException::new);
 
         VehicleSchema vehicleSchema = vehicleRepository.findById(assignment.getVehicleId()).orElseThrow(VehicleNotFoundException::new);
-
-        assignmentRepository.findByDriverAndActiveTrue(driverSchema)
-        .ifPresent(a -> { throw new RuntimeException("Driver is already assigned"); });
-
-        assignmentRepository.findByVehicleAndActiveTrue(vehicleSchema)
-        .ifPresent(a -> { throw new RuntimeException("Vehicle is already assigned"); });
 
         return this.assignmentRepository.save(new AssignmentSchema(assignment,driverSchema,vehicleSchema)).toAssignment();
     }
@@ -69,17 +61,6 @@ public class AssignmentDatabaseGateway implements AssignmentGateway {
         .orElseThrow(DriverNotFoundException::new);
 
         VehicleSchema vehicleSchema = vehicleRepository.findById(assignment.getVehicleId()).orElseThrow(VehicleNotFoundException::new);
-        assignmentRepository.findByDriverAndActiveTrue(driverSchema).ifPresent(existing -> {
-            if (!existing.getId().equals(currentAssignment.getId())) {
-                throw new RuntimeException("Driver is already assigned in another assignment");
-            }
-        });
-
-        assignmentRepository.findByVehicleAndActiveTrue(vehicleSchema).ifPresent(existing -> {
-            if (!existing.getId().equals(currentAssignment.getId())) {
-                throw new RuntimeException("Vehicle is already assigned in another assignment");
-            }
-        });
 
         currentAssignment.setActive(false);
         currentAssignment.setEndDate(LocalDate.now());
