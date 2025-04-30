@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 
 import com.example.fleetmaster.entity.AbstractEntity;
-import com.example.fleetmaster.entity.assigment.model.Assignment;
-import com.example.fleetmaster.entity.coordinates.model.Coordinate;
-import com.example.fleetmaster.usecase.assignment.GetAssignmentUseCase;
+import com.example.fleetmaster.infrastructure.config.db.schema.AssignmentSchema;
 
 public class Route  extends AbstractEntity<Long>{
 
@@ -14,8 +12,8 @@ public class Route  extends AbstractEntity<Long>{
     private LocalDate createdDate;
     private LocalDate travelDate; 
 
-    private Coordinate startLocation; 
-    private Coordinate endLocation; 
+    private Long startLocationId; 
+    private Long endLocationId; 
 
     private Long assignmentId;
     private Long vehicleId;
@@ -25,15 +23,15 @@ public class Route  extends AbstractEntity<Long>{
     private String problemdescription;
     private ArrayList<String> commentaries;
 
-    public Route(String name, LocalDate travelDate, Coordinate endLocation, Long assignmentId) {
+    public Route(String name, LocalDate travelDate, Long endLocationId, AssignmentSchema assignmentsSchema) {
         this.name = name;
         this.createdDate = LocalDate.now();
         this.travelDate = travelDate;
-        // this.startLocation = CONSTANTS.START_LOCATION;
-        this.endLocation = endLocation;
-        setAssignmentId(assignmentId);
+        this.startLocationId = (long) 1;
+        this.endLocationId = endLocationId;
+        setAssignment(assignmentsSchema);
         this.successfulRoute = false;
-        this.problemdescription = null;
+        this.problemdescription = "";
         this.commentaries = new ArrayList<>();
     }
 
@@ -61,32 +59,30 @@ public class Route  extends AbstractEntity<Long>{
         this.travelDate = travelDate;
     }
 
-    public void setStartLocation (Coordinate startLocation) {
-        this.startLocation = startLocation;
+    public void setCreatedDateetStartLocationId (Long startLocationId) {
+        this.startLocationId = startLocationId;
     }
 
-    public Coordinate getStartLocation() {
-        return startLocation;
+    public Long getStartLocationId() {
+        return this.startLocationId;
     }
 
-    public Coordinate getEndLocation() {
-        return endLocation;
+    public Long getEndLocationId() {
+        return endLocationId;
     }
 
-    public void setEndLocation(Coordinate endLocation) {
-        this.endLocation = endLocation;
+    public void setEndLocationId(Long endLocationId) {
+        this.endLocationId = endLocationId;
     }
 
     public Long getAssignmentId() {
         return assignmentId;
     }
 
-    public void setAssignmentId(Long assignmentId) {
-        this.assignmentId = assignmentId;
-        GetAssignmentUseCase assignmentUseCase = new GetAssignmentUseCase();
-        Assignment assignment = assignmentUseCase.execute(assignmentId);
-        this.vehicleId = assignment.getVehicleId();
-        this.driverId = assignment.getDriverId();
+    public void setAssignment(AssignmentSchema assignmentsSchema) {
+        this.assignmentId = assignmentsSchema.getId();
+        this.vehicleId = assignmentsSchema.toAssignment().getVehicleId();
+        this.driverId = assignmentsSchema.toAssignment().getDriverId();
     }
 
     public Long getVehicleID() {

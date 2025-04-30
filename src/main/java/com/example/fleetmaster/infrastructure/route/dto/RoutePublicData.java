@@ -3,7 +3,6 @@ package com.example.fleetmaster.infrastructure.route.dto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.example.fleetmaster.entity.coordinates.model.Coordinate;
 import com.example.fleetmaster.entity.route.model.Route;
 import com.example.fleetmaster.usecase.route.dto.IRoutePublicData;
 
@@ -12,8 +11,8 @@ public record RoutePublicData (
     String name,
     LocalDate createdDate,
     LocalDate travelDate,
-    Coordinate startLocation,
-    Coordinate endLocation,
+    Long startLocationId,
+    Long endLocationId,
     Long assignmentId,
     Long vehicleId,
     Long driverId,
@@ -27,8 +26,8 @@ public record RoutePublicData (
             route.getName(),
             route.getCreatedDate(),
             route.getTravelDate(),
-            route.getStartLocation(),
-            route.getEndLocation(),
+            route.getStartLocationId(),
+            route.getEndLocationId(),
             route.getAssignmentId(),
             route.getVehicleID(),
             route.getDriverId(),

@@ -6,13 +6,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.example.fleetmaster.entity.coordinates.exception.CoordinateNotFoundException;
-import com.example.fleetmaster.entity.route.exception.RouteNotFoundException;
 import com.example.fleetmaster.entity.route.model.Route;
-import com.example.fleetmaster.infrastructure.config.db.repository.AssignmentRepository;
-import com.example.fleetmaster.infrastructure.config.db.repository.CoordinateRepository;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -23,52 +17,40 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
     @Column(length = 15, nullable = false)
     private String name;
 
-    @NotBlank
-    @Column(nullable = false)
-    private LocalDate createdDate;
+    @Column()
+    private LocalDate createdDate = LocalDate.now();
 
-    @NotBlank
+    @NotNull
     @Column(nullable = false)
     private LocalDate travelDate;
 
-    @NotBlank
-    @Column(nullable = false)
-    private CoordinateSchema startLocation; // its a constant
+    @Column()
+    private CoordinateSchema startLocation = new CoordinateSchema(20.0, 20.0, "Company location"); // its a constant
 
-    @NotBlank
+    @NotNull
     @Column(nullable = false)
     private CoordinateSchema endLocation;
 
     @NotNull
-    @NotBlank
     @Column(nullable = false)
     private AssignmentSchema assignment;
 
-    @NotBlank
+    @NotNull
     @Column(nullable = false)
     private Long vehicleId;
 
-    @NotBlank
+    @NotNull
     @Column(nullable = false)
     private Long driverId;
 
-    @NotBlank
     @Column()
-    private Boolean successfulRoute;
+    private Boolean successfulRoute = false;
 
-    @NotBlank
-    @Column(length = 250)
-    private String problemdescription;
+    @Column(length = 250, nullable = true)
+    private String problemdescription = "";
 
-    @NotBlank
     @Column()
     private ArrayList<String> commentaries; // this could be a list of objects with a description, date, and user.
-
-    @Autowired
-    private AssignmentRepository assignmentRepository;
-
-    @Autowired
-    private CoordinateRepository coordinateRepository;
 
     public RouteSchema(String name, LocalDate travelDate, CoordinateSchema endLocation, AssignmentSchema assignment) {
         this.name = name;
@@ -82,18 +64,6 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
 
     public RouteSchema() {
 
-    }
-
-    public RouteSchema(Route route) {
-        this.name = route.getName();
-        this.createdDate = route.getCreatedDate();
-        this.travelDate = route.getTravelDate();
-        this.setStartLocation(route.getStartLocation().getId());
-        this.setEndLocation(route.getEndLocation().getId());
-        this.setAssignment(route.getAssignmentId());
-        this.successfulRoute = route.isSuccessfulRoute();
-        this.problemdescription = route.getProblemdescription();
-        this.commentaries = route.getCommentaries();
     }
 
     public RouteSchema(Long id, String name, LocalDate travelDate, CoordinateSchema endLocation,
@@ -136,12 +106,6 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
         this.startLocation = startLocation;
     }
 
-    public void setStartLocation(Long startLocationId) {
-        CoordinateSchema coordinateSchema = coordinateRepository.findById(startLocationId)
-                .orElseThrow(CoordinateNotFoundException::new);
-        this.startLocation = coordinateSchema;
-    }
-
     public CoordinateSchema getStartLocation() {
         return startLocation;
     }
@@ -154,12 +118,6 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
         this.endLocation = endLocation;
     }
 
-    public void setEndLocation(Long endLocationId) {
-        CoordinateSchema coordinateSchema = coordinateRepository.findById(endLocationId)
-                .orElseThrow(CoordinateNotFoundException::new);
-        this.endLocation = coordinateSchema;
-    }
-
     public AssignmentSchema getAssignment() {
         return assignment;
     }
@@ -168,12 +126,6 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
         this.assignment = assignment;
         this.vehicleId = this.assignment.toAssignment().getVehicleId();
         this.driverId = this.assignment.toAssignment().getDriverId();
-    }
-
-    public void setAssignment(Long assignmentId) {
-        AssignmentSchema assignmentSchema = assignmentRepository.findById(assignmentId)
-                .orElseThrow(RouteNotFoundException::new);
-        setAssignment(assignmentSchema);
     }
 
     public Long getVehicleID() {
@@ -225,8 +177,8 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
         Route route = new Route(
                 this.getName(),
                 this.getTravelDate(),
-                this.getEndLocation().toCoordinate(),
-                this.getAssignment().getId());
+                this.getEndLocation().toCoordinate().getId(),
+                this.getAssignment());
         route.setId(this.getId());
 
         return route;
@@ -236,8 +188,6 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
         this.setName(route.getName());
         this.setCreatedDate(route.getCreatedDate());
         this.setTravelDate(route.getTravelDate());
-        this.setEndLocation(route.getEndLocation().getId());
-        this.setAssignment(route.getAssignmentId());
         this.setSuccessfulRoute(route.isSuccessfulRoute());
         this.setProblemdescription(route.getProblemdescription());
         this.setCommentaries(route.getCommentaries());

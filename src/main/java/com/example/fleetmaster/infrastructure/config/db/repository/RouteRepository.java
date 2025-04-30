@@ -2,6 +2,8 @@ package com.example.fleetmaster.infrastructure.config.db.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.example.fleetmaster.entity.coordinates.model.Coordinate;
 import com.example.fleetmaster.infrastructure.config.db.schema.RouteSchema;
 import java.util.Optional;
 import java.time.LocalDate;
@@ -13,11 +15,11 @@ public interface RouteRepository extends JpaRepository<RouteSchema, Long> {
 
     Optional<RouteSchema> findByTravelDate(LocalDate travelDate);
 
-    Optional<RouteSchema> findByEndLocation(String endLocation);
+    Optional<RouteSchema> findByEndLocation(Coordinate endLocation);
 
-    Optional<RouteSchema> findByVehicle(String vehicle);
+    Optional<RouteSchema> findByVehicleId(Long vehicleId);
 
-    Optional<RouteSchema> findByResponsibleUser(String responsibleUser);
+    Optional<RouteSchema> findByDriverId(Long driverId);
 
     Optional<RouteSchema> findBySuccessfulRoute(Boolean successfulRoute);
 
@@ -26,11 +28,11 @@ public interface RouteRepository extends JpaRepository<RouteSchema, Long> {
 
     Collection<RouteSchema> findAllByTravelDate(LocalDate travelDate);
 
-    Collection<RouteSchema> findAllByEndLocation(String endLocation);
+    Collection<RouteSchema> findAllByEndLocation(Coordinate endLocation);
 
-    Collection<RouteSchema> findAllByVehicle(String vehicle);
+    Collection<RouteSchema> findAllByVehicleId(Long vehicleId);
 
-    Collection<RouteSchema> findAllByResponsibleUser(String responsibleUser);
+    Collection<RouteSchema> findAllByDriverId(Long driverId);
 
     Collection<RouteSchema> findAllBySuccessfulRoute(Boolean successfulRoute);
 }

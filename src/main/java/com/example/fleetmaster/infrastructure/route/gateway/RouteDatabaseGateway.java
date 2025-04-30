@@ -6,9 +6,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.fleetmaster.entity.coordinates.exception.CoordinateNotFoundException;
 import com.example.fleetmaster.entity.route.exception.RouteNotFoundException;
 import com.example.fleetmaster.entity.route.gateway.RouteGateway;
+import com.example.fleetmaster.infrastructure.config.db.repository.AssignmentRepository;
+import com.example.fleetmaster.infrastructure.config.db.repository.CoordinateRepository;
 import com.example.fleetmaster.infrastructure.config.db.repository.RouteRepository;
+import com.example.fleetmaster.infrastructure.config.db.schema.AssignmentSchema;
+import com.example.fleetmaster.infrastructure.config.db.schema.CoordinateSchema;
 import com.example.fleetmaster.infrastructure.config.db.schema.RouteSchema;
 import com.example.fleetmaster.entity.route.model.Route;
 
@@ -18,9 +23,27 @@ public class RouteDatabaseGateway implements RouteGateway {
     @Autowired
     private RouteRepository routeRepository;
 
+    @Autowired
+    private AssignmentRepository assignmentRepository;
+
+    @Autowired
+    private CoordinateRepository coordinateRepository;
+
     @Override
     public Route create(Route route) {
-        return this.routeRepository.save(new RouteSchema(route)).toRoute();
+
+        CoordinateSchema coordinateSchema = coordinateRepository.findById(route.getEndLocationId())
+                .orElseThrow(CoordinateNotFoundException::new);
+
+        AssignmentSchema assignmentSchema = assignmentRepository.findById(route.getAssignmentId())
+                .orElseThrow(RouteNotFoundException::new);
+
+        return this.routeRepository.save(new RouteSchema(
+                route.getId(),
+                route.getName(),
+                route.getTravelDate(),
+                coordinateSchema,
+                assignmentSchema)).toRoute();
     }
 
     @Override

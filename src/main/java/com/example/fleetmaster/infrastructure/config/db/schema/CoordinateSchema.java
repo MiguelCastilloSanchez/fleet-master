@@ -9,21 +9,19 @@ import jakarta.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Coordinates")
-public class CoordinateSchema {
+public class CoordinateSchema extends AbstractEntitySchema<Long>{
     
-    @NotBlank
     @Column(nullable = false)
-    private Long latitude;
+    private double latitude;
 
-    @NotBlank
     @Column(nullable = false)
-    private Long altitude;
+    private double altitude;
 
     @NotBlank
     @Column(length = 50, nullable = false)
     private String name;
 
-    public CoordinateSchema(Long latitude, Long altitude, String name) {
+    public CoordinateSchema(double latitude, double altitude, String name) {
         this.latitude = latitude;
         this.altitude = altitude;
         this.name = name;
@@ -32,25 +30,32 @@ public class CoordinateSchema {
     public CoordinateSchema() {
     }
 
+    public CoordinateSchema(Long id, double latitude, double altitude, String name) {
+        this.setId(id);
+        this.latitude = latitude;
+        this.altitude = altitude;
+        this.name = name;
+    }
+
     public CoordinateSchema(Coordinate coordinate) {
         this.latitude = coordinate.getLatitude();
         this.altitude = coordinate.getAltitude();
         this.name = coordinate.getName();
     }
     
-    public long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public long getAltitude() {
+    public double getAltitude() {
         return altitude;
     }
 
-    public void setAltitude(long altitude) {
+    public void setAltitude(double altitude) {
         this.altitude = altitude;
     }
 
@@ -68,6 +73,8 @@ public class CoordinateSchema {
             this.altitude, 
             this.name
         );
+
+        coordinate.setId(this.getId());
 
         return coordinate;
     }

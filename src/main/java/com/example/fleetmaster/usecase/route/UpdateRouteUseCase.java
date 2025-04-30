@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.example.fleetmaster.entity.route.exception.RouteNotFoundException;
 import com.example.fleetmaster.entity.route.gateway.RouteGateway;
 import com.example.fleetmaster.entity.route.model.Route;
+import com.example.fleetmaster.infrastructure.config.db.repository.AssignmentRepository;
+import com.example.fleetmaster.infrastructure.config.db.schema.AssignmentSchema;
 import com.example.fleetmaster.usecase.route.dto.IRouteUpdateData;
 
 @Service
@@ -13,6 +15,9 @@ public class UpdateRouteUseCase {
 
     @Autowired
     private RouteGateway routeGateway;
+
+    @Autowired
+    private AssignmentRepository assignmentRepository;
 
     public Route execute(Long id, IRouteUpdateData data) throws RouteNotFoundException {
         Route route = this.routeGateway.findById(id).orElseThrow(RouteNotFoundException::new);
@@ -25,12 +30,14 @@ public class UpdateRouteUseCase {
             route.setTravelDate(data.travelDate());
         }
 
-        if (data.endLocation() != null) {
-            route.setEndLocation(data.endLocation());
+        if (data.endLocationId() != null) {
+            route.setEndLocationId(data.endLocationId());
         }
 
         if (data.assignmentId() != null) {
-            route.setAssignmentId(data.assignmentId());
+            AssignmentSchema assignmentSchema = assignmentRepository.findById(data.assignmentId())
+                    .orElseThrow(RouteNotFoundException::new);
+            route.setAssignment(assignmentSchema);
         }
 
         if (data.isSuccessfulRoute()) {
@@ -39,11 +46,12 @@ public class UpdateRouteUseCase {
 
         if (data.problemdescription() != null && !data.problemdescription().isBlank()) {
             route.setProblemdescription(data.problemdescription());
+        } else {
+            route.setProblemdescription(" ");
         }
 
-        // this is precaryous, we have to check how adding a new commentary.
         if (data.commentaries() != null && !data.commentaries().isEmpty()) {
-            route.addCommentary(data.commentaries().get(0)); //  a list of objects with a description, and user?
+            route.addCommentary(data.commentaries().get(0));
         }
 
         return this.routeGateway.update(route);

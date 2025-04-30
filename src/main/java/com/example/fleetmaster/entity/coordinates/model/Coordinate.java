@@ -4,29 +4,29 @@ import com.example.fleetmaster.entity.AbstractEntity;
 
 public class Coordinate extends AbstractEntity<Long> {
 
-    private long latitude;
-    private long altitude;
+    private double latitude;
+    private double altitude;
     private String name;
 
-    public Coordinate(long latitude, long altitude, String name) {
+    public Coordinate(double latitude, double altitude, String name) {
         this.latitude = latitude;
         this.altitude = altitude;
         this.name = name;
     }
 
-    public long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public long getAltitude() {
+    public double getAltitude() {
         return altitude;
     }
 
-    public void setAltitude(long altitude) {
+    public void setAltitude(double altitude) {
         this.altitude = altitude;
     }
 

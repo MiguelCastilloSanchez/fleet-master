@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.example.fleetmaster.entity.coordinates.model.Coordinate;
 import com.example.fleetmaster.usecase.route.dto.IRouteRegistrationData;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public record RouteRegistrationData (
@@ -16,13 +16,13 @@ public record RouteRegistrationData (
     @Size(min = 3, max = 50)
     String name,
 
-    @NotBlank
+    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     LocalDate travelDate,
 
-    @NotBlank
-    Coordinate endLocation, // this most be changed to a location object
-
-    @NotBlank
+    @NotNull
+    Long endLocationId,
+    
+    @NotNull
     Long assignmentId
 ) implements IRouteRegistrationData {}
