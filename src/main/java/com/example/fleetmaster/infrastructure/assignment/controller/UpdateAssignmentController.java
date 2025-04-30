@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.fleetmaster.infrastructure.assignment.dto.AssignmentPublicData;
-import com.example.fleetmaster.infrastructure.assignment.dto.AssignmentRegistrationData;
+import com.example.fleetmaster.infrastructure.assignment.dto.AssignmentUpdateData;
 import com.example.fleetmaster.usecase.assignment.UpdateAssignmentUseCase;
 
 import jakarta.validation.Valid;
@@ -22,7 +22,7 @@ public class UpdateAssignmentController {
 
     @PutMapping("/assignment/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AssignmentPublicData updateAssignment(@PathVariable Long id, @Valid @RequestBody AssignmentRegistrationData data){
-        return new AssignmentPublicData(updateAssignmentUseCase.execute(id, data));
+    public AssignmentPublicData updateAssignment(@PathVariable Long id, @Valid @RequestBody AssignmentUpdateData data){
+        return new AssignmentPublicData(updateAssignmentUseCase.execute(data));
     }
 }
