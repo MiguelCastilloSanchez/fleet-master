@@ -21,7 +21,16 @@ C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fl
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\controller\UpdateAssignmentController.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\dto\AssignmentPublicData.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\dto\AssignmentRegistrationData.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\dto\AssignmentUpdateData.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\gateway\AssignmentDatabaseGateway.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\validation\Register\DriverNotAssigned.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\validation\Register\DriverNotAssignedValidator.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\validation\Register\VehicleNotAssigned.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\validation\Register\VehicleNotAssignedValidator.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\validation\Update\DriverNotAssignedForUpdate.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\validation\Update\DriverNotAssignedForUpdateValidator.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\validation\Update\VehicleNotAssignedForUpdate.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\assignment\validation\Update\VehicleNotAssignedForUpdateValidator.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\db\repository\AssignmentRepository.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\db\repository\DriverRepository.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\infrastructure\config\db\repository\VehicleRepository.java
@@ -53,6 +62,7 @@ C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fl
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\assignment\DeleteAssignmentUseCase.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\assignment\dto\IAssignmentPublicData.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\assignment\dto\IAssignmentRegistrationData.java
+C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\assignment\dto\IAssignmentUpdateData.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\assignment\GetAssignmentUseCase.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\assignment\GetDriverAssignmentUseCase.java
 C:\Users\diego\OneDrive\Documentos\8vo Semestre\DevOps\Tareas\Primera Entrega\fleet-master\src\main\java\com\example\fleetmaster\usecase\assignment\GetVehicleAssignmentUseCase.java
