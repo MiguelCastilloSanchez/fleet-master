@@ -1,7 +1,6 @@
 package com.example.fleetmaster.infrastructure.route.dto;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import com.example.fleetmaster.usecase.route.dto.IRouteUpdateData;
 
@@ -16,9 +15,9 @@ public record RouteUpdateData(
     
     Long assignmentId,
     
-    boolean isSuccessfulRoute,
+    int isSuccessfulRoute,
     
     String problemdescription,
     
-    ArrayList<String> commentaries
+    String commentaries
 ) implements IRouteUpdateData {} 

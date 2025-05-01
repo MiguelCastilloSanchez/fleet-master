@@ -3,6 +3,7 @@ package com.example.fleetmaster.usecase.route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.fleetmaster.entity.assigment.exception.AssignmentNotFoundException;
 import com.example.fleetmaster.entity.route.exception.RouteNotFoundException;
 import com.example.fleetmaster.entity.route.gateway.RouteGateway;
 import com.example.fleetmaster.entity.route.model.Route;
@@ -36,22 +37,24 @@ public class UpdateRouteUseCase {
 
         if (data.assignmentId() != null) {
             AssignmentSchema assignmentSchema = assignmentRepository.findById(data.assignmentId())
-                    .orElseThrow(RouteNotFoundException::new);
+                    .orElseThrow(AssignmentNotFoundException::new);
             route.setAssignment(assignmentSchema);
         }
 
-        if (data.isSuccessfulRoute()) {
-            route.setSuccessfulRoute(data.isSuccessfulRoute());
-        }
-
-        if (data.problemdescription() != null && !data.problemdescription().isBlank()) {
-            route.setProblemdescription(data.problemdescription());
+        if (data.isSuccessfulRoute() != 0) {
+            route.setSuccessfulRoute(false);
         } else {
-            route.setProblemdescription(" ");
+            route.setSuccessfulRoute(true);
         }
 
-        if (data.commentaries() != null && !data.commentaries().isEmpty()) {
-            route.addCommentary(data.commentaries().get(0));
+        if (data.problemdescription() != null) {
+            route.setProblemdescription(data.problemdescription());
+            System.out.println("Problemdescription: " + data.problemdescription()); 
+            System.out.println(route.getProblemdescription()); 
+        }
+
+        if (data.commentaries() != null && !data.commentaries().isBlank()) {
+            route.addCommentary(data.commentaries());
         }
 
         return this.routeGateway.update(route);

@@ -1,19 +1,19 @@
 package com.example.fleetmaster.entity.route.model;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 
 import com.example.fleetmaster.entity.AbstractEntity;
 import com.example.fleetmaster.infrastructure.config.db.schema.AssignmentSchema;
 
-public class Route  extends AbstractEntity<Long>{
+public class Route extends AbstractEntity<Long> {
 
     private String name;
     private LocalDate createdDate;
-    private LocalDate travelDate; 
+    private LocalDate travelDate;
 
-    private Long startLocationId; 
-    private Long endLocationId; 
+    private Long startLocationId;
+    private Long endLocationId;
 
     private Long assignmentId;
     private Long vehicleId;
@@ -31,8 +31,21 @@ public class Route  extends AbstractEntity<Long>{
         this.endLocationId = endLocationId;
         setAssignment(assignmentsSchema);
         this.successfulRoute = false;
-        this.problemdescription = "";
+        this.problemdescription = "Without problems";
         this.commentaries = new ArrayList<>();
+    }
+
+    public Route(String name, LocalDate travelDate, Long endLocationId, AssignmentSchema assignmentsSchema,
+            String problemdescription, Boolean successfulRoute, ArrayList<String> commentaries) {
+        this.name = name;
+        this.createdDate = LocalDate.now();
+        this.travelDate = travelDate;
+        this.startLocationId = (long) 1;
+        this.endLocationId = endLocationId;
+        setAssignment(assignmentsSchema);
+        this.successfulRoute = successfulRoute;
+        this.problemdescription = problemdescription;
+        this.commentaries = commentaries;
     }
 
     public String getName() {
@@ -59,7 +72,7 @@ public class Route  extends AbstractEntity<Long>{
         this.travelDate = travelDate;
     }
 
-    public void setCreatedDateetStartLocationId (Long startLocationId) {
+    public void setCreatedDateetStartLocationId(Long startLocationId) {
         this.startLocationId = startLocationId;
     }
 
@@ -115,8 +128,9 @@ public class Route  extends AbstractEntity<Long>{
 
     public void addCommentary(String commentary) {
         this.commentaries.add(commentary);
-    
+
     }
+
     public void removeCommentary(String commentary) {
         this.commentaries.remove(commentary);
     }

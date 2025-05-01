@@ -184,6 +184,20 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
         return route;
     }
 
+    public Route toUpdateRoute() {
+        Route route = new Route(
+                this.getName(),
+                this.getTravelDate(),
+                this.getEndLocation().toCoordinate().getId(),
+                this.getAssignment(),
+                this.getProblemdescription(),
+                this.isSuccessfulRoute(),
+                this.getCommentaries());
+        route.setId(this.getId());
+
+        return route;
+    }
+
     public void updateRoute(Route route) {
         this.setName(route.getName());
         this.setCreatedDate(route.getCreatedDate());

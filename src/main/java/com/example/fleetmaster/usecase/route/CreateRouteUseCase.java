@@ -3,6 +3,7 @@ package com.example.fleetmaster.usecase.route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.fleetmaster.entity.route.exception.InactiveAssignmentException;
 import com.example.fleetmaster.entity.route.exception.RouteNotFoundException;
 import com.example.fleetmaster.entity.route.gateway.RouteGateway;
 import com.example.fleetmaster.entity.route.model.Route;
@@ -23,6 +24,10 @@ public class CreateRouteUseCase {
 
         AssignmentSchema assignmentSchema = assignmentRepository.findById(data.assignmentId())
                 .orElseThrow(RouteNotFoundException::new);
+
+        if (!assignmentSchema.isActive()) {
+            throw new InactiveAssignmentException("Assignment is  inactive");
+        }
 
         Route route = new Route(data.name(), data.travelDate(), data.endLocationId(), assignmentSchema);
         return this.routeGateway.create(route);

@@ -50,7 +50,9 @@ public class RouteDatabaseGateway implements RouteGateway {
     public Route update(Route route) {
         RouteSchema schema = this.routeRepository.findById(route.getId()).orElseThrow(RouteNotFoundException::new);
         schema.updateRoute(route);
-        return this.routeRepository.save(schema).toRoute();
+        schema.setProblemdescription(route.getProblemdescription());
+        schema.setSuccessfulRoute(route.isSuccessfulRoute());
+        return this.routeRepository.save(schema).toUpdateRoute();
     }
 
     @Override
