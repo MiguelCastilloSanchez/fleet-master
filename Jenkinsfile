@@ -37,6 +37,7 @@ pipeline {
     stage ('Delivery'){
         steps{
             sh '''
+            rm -rf fleet-master-deployment
             git clone https://github.com/diegoalamilla/fleet-master-deployment
             cd fleet-master-deployment
             sed -i "s/^FLEET_MAIN_BUILD_ID=.*/FLEET_MAIN_BUILD_ID=${BUILD_ID}/" .env
