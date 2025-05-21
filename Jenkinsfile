@@ -8,7 +8,7 @@ pipeline {
   environment {
     IMAGE_NAME = "fleet_master_main_project"
     SERVICE_NAME = "fleet_master_main"
-    GH_TOKEN = "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"
+    GH_TOKEN = credentials("github-token")
   }
 
   stages {
@@ -45,7 +45,7 @@ pipeline {
             git config user.email "jenkins[bot]@fleetmaster.com"
             git add .env
             git commit -m "chore: update ${IMAGE_NAME} image to ${BUILD_ID}"
-            git push  https://${GH_TOKEN}@github.com/diegoalamilla/fleet-master-deployment.git
+            git push https://x-access-token:${GH_TOKEN}@github.com/diegoalamilla/fleet-master-deployment.git
 
             '''
         }
