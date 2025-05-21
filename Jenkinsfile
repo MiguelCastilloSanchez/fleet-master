@@ -44,7 +44,8 @@ pipeline {
             git config user.email "jenkins[bot]@fleetmaster.com"
             git add .env
             git commit -m "chore: update ${IMAGE_NAME} image to ${BUILD_ID}"
-            git push https://diegoalamilla:${GH_TOKEN}@github.com/diegoalamilla/fleet-master-deployment.git
+            git push  https://${GH_TOKEN}@github.com/diegoalamilla/fleet-master-deployment.git
+
             '''
         }
     
