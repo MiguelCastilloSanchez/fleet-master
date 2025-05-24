@@ -1,14 +1,11 @@
 pipeline {
   agent any
 
-  parameters {
-    string(name: 'BUILD_ID', defaultValue: 'latest', description: 'Versión de imagen a generar')
-  }
-
   environment {
     IMAGE_NAME = "fleet_master_main_project"
     SERVICE_NAME = "fleet_master_main"
     GH_TOKEN = credentials("github-token")
+    BUILD_ID = "${env.BUILD_ID}"
   }
 
   stages {
