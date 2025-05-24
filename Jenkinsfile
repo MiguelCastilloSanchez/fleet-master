@@ -15,16 +15,6 @@ pipeline {
       }
     }
 
-    stage('Limpiar contenedor anterior') {
-      steps {
-        sh """
-          docker stop "fleet_master_main" || true
-
-          docker rm "fleet_master_main_project" || true
-        """
-      }
-    }
-
     stage('Construir imagen Docker') {
       steps {
         sh 'docker build -t ${IMAGE_NAME}:${BUILD_ID} .'
