@@ -12,7 +12,9 @@ import com.example.fleetmaster.infrastructure.route.dto.RouteRegistrationData;
 import com.example.fleetmaster.usecase.route.CreateRouteUseCase;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class CreateRouteController {
 

@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.fleetmaster.entity.coordinates.exception.CoordinateNotFoundException;
 import com.example.fleetmaster.infrastructure.coordinates.dto.CoordinatePublicData;
 import com.example.fleetmaster.usecase.coordinates.DeleteCoordinateUseCase;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
-
 public class DeleteCoordinateController {
 
     @Autowired
