@@ -14,7 +14,9 @@ import com.example.fleetmaster.infrastructure.vehicle.dto.VehicleUpdateData;
 import com.example.fleetmaster.usecase.vehicle.UpdateVehicleUseCase;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class UpdateVehicleController {
     

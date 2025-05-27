@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.fleetmaster.entity.vehicle.exception.VehicleNotFoundException;
 import com.example.fleetmaster.infrastructure.vehicle.dto.VehiclePublicData;
 import com.example.fleetmaster.usecase.vehicle.DeleteVehicleUseCase;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 public class DeleteVehicleController {
     

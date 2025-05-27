@@ -12,7 +12,9 @@ import com.example.fleetmaster.infrastructure.driver.dto.DriverRegistrationData;
 import com.example.fleetmaster.usecase.driver.CreateDriverUseCase;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class CreateDriverController {
     
