@@ -16,7 +16,7 @@ public interface IRouteUpdateData {
 
     Long assignmentId();
 
-    int isSuccessfulRoute();
+    String isSuccessfulRoute();
 
     String problemdescription();
 
