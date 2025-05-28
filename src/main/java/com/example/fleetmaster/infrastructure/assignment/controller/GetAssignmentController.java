@@ -2,6 +2,7 @@ package com.example.fleetmaster.infrastructure.assignment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -11,6 +12,7 @@ import com.example.fleetmaster.entity.assigment.exception.AssignmentNotFoundExce
 import com.example.fleetmaster.infrastructure.assignment.dto.AssignmentPublicData;
 import com.example.fleetmaster.usecase.assignment.GetAssignmentUseCase;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class GetAssignmentController {
     
