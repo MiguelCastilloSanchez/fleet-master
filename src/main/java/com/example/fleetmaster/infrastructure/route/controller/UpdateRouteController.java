@@ -28,5 +28,4 @@ public class UpdateRouteController {
     public RoutePublicData updateRoute(@PathVariable Long id, @Valid @RequestBody RouteUpdateData data) throws RouteNotFoundException {
         return new RoutePublicData(updateRouteUseCase.execute(id, data));
     }
-
 }

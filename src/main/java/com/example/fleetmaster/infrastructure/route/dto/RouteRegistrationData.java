@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.fleetmaster.usecase.route.dto.IRouteRegistrationData;
-
+import com.example.fleetmaster.infrastructure.route.validation.Register.AssignmentNotInUse;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,5 +26,6 @@ public record RouteRegistrationData (
     Long endLocationId,
     
     @NotNull
+    @AssignmentNotInUse
     Long assignmentId
 ) implements IRouteRegistrationData {}

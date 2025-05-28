@@ -31,7 +31,7 @@ public record RoutePublicData (
             route.getAssignmentId(),
             route.getVehicleID(),
             route.getDriverId(),
-            route.isSuccessfulRoute(),
+            route.is_SuccessfulRoute(),
             route.getProblemdescription(),
             route.getCommentaries()
         );
