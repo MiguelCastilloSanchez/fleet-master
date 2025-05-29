@@ -12,7 +12,9 @@ import com.example.fleetmaster.infrastructure.driver.dto.DriverPublicData;
 
 import com.example.fleetmaster.usecase.driver.DeleteDriverUseCase;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class DeleteDriverController {
     

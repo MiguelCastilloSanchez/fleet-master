@@ -11,7 +11,9 @@ import com.example.fleetmaster.usecase.route.SearchRouteUseCase;
 import com.example.fleetmaster.entity.route.model.Route;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class SearchRouteController {
 

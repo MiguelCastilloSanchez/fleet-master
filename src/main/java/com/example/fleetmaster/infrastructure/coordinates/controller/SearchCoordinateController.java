@@ -11,7 +11,9 @@ import com.example.fleetmaster.usecase.coordinates.SearchCoordinateUseCase;
 import com.example.fleetmaster.entity.coordinates.model.Coordinate;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class SearchCoordinateController {
 

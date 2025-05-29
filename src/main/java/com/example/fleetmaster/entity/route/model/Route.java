@@ -19,7 +19,7 @@ public class Route extends AbstractEntity<Long> {
     private Long vehicleId;
     private Long driverId;
 
-    private Boolean successfulRoute;
+    private Boolean isSuccessfulRoute;
     private String problemdescription;
     private ArrayList<String> commentaries;
 
@@ -30,7 +30,6 @@ public class Route extends AbstractEntity<Long> {
         this.startLocationId = (long) 1;
         this.endLocationId = endLocationId;
         setAssignment(assignmentsSchema);
-        this.successfulRoute = false;
         this.problemdescription = "Without problems";
         this.commentaries = new ArrayList<>();
     }
@@ -43,7 +42,8 @@ public class Route extends AbstractEntity<Long> {
         this.startLocationId = (long) 1;
         this.endLocationId = endLocationId;
         setAssignment(assignmentsSchema);
-        this.successfulRoute = successfulRoute;
+        this.isSuccessfulRoute = successfulRoute;
+        setProblemdescription(problemdescription);
         this.problemdescription = problemdescription;
         this.commentaries = commentaries;
     }
@@ -85,6 +85,7 @@ public class Route extends AbstractEntity<Long> {
     }
 
     public void setEndLocationId(Long endLocationId) {
+        System.out.println("ROOUTE setEndLocId endLocationId: " + endLocationId);
         this.endLocationId = endLocationId;
     }
 
@@ -106,12 +107,12 @@ public class Route extends AbstractEntity<Long> {
         return this.driverId;
     }
 
-    public Boolean isSuccessfulRoute() {
-        return successfulRoute;
+    public Boolean is_SuccessfulRoute() {
+        return isSuccessfulRoute;
     }
 
     public void setSuccessfulRoute(Boolean successfulRoute) {
-        this.successfulRoute = successfulRoute;
+        this.isSuccessfulRoute = successfulRoute;
     }
 
     public String getProblemdescription() {

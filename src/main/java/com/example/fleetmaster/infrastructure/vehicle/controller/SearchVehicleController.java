@@ -13,7 +13,9 @@ import com.example.fleetmaster.usecase.vehicle.SearchVehicleUseCase;
 import com.example.fleetmaster.entity.vehicle.model.Vehicle;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class SearchVehicleController {
     

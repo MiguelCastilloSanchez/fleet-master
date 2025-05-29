@@ -25,7 +25,7 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
     private LocalDate travelDate;
 
     @Column()
-    private CoordinateSchema startLocation = new CoordinateSchema(20.0, 20.0, "Company location"); // its a constant
+    private CoordinateSchema startLocation = new CoordinateSchema(20.0, 20.0, "Company location");
 
     @NotNull
     @Column(nullable = false)
@@ -47,23 +47,21 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
     private Boolean successfulRoute = false;
 
     @Column(length = 250, nullable = true)
-    private String problemdescription = "";
+    private String problemdescription;
 
     @Column()
-    private ArrayList<String> commentaries; // this could be a list of objects with a description, date, and user.
+    private ArrayList<String> commentaries;
 
     public RouteSchema(String name, LocalDate travelDate, CoordinateSchema endLocation, AssignmentSchema assignment) {
         this.name = name;
         this.createdDate = LocalDate.now();
         this.travelDate = travelDate;
-        // this.startLocation = CONSTANTS.START_LOCATION;
         this.endLocation = endLocation;
         setAssignment(assignment);
         this.commentaries = new ArrayList<>();
     }
 
     public RouteSchema() {
-
     }
 
     public RouteSchema(Long id, String name, LocalDate travelDate, CoordinateSchema endLocation,
@@ -72,7 +70,7 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
         this.name = name;
         this.createdDate = LocalDate.now();
         this.travelDate = travelDate;
-        // this.startLocation = CONSTANTS.START_LOCATION;
+        this.problemdescription = "Sin problemas";
         this.endLocation = endLocation;
         setAssignment(assignment);
         this.commentaries = new ArrayList<>();
@@ -178,9 +176,12 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
                 this.getName(),
                 this.getTravelDate(),
                 this.getEndLocation().toCoordinate().getId(),
-                this.getAssignment());
+                this.getAssignment(),
+                this.getProblemdescription(),
+                this.isSuccessfulRoute(),
+                this.getCommentaries());
         route.setId(this.getId());
-
+        System.out.println("RouteSchema > toRoute > endLocationId: " + route.getEndLocationId());
         return route;
     }
 
@@ -194,7 +195,8 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
                 this.isSuccessfulRoute(),
                 this.getCommentaries());
         route.setId(this.getId());
-
+        System.out.println("RouteSchema > toUpdateRoute > endLocationId: " + route.getEndLocationId());
+        
         return route;
     }
 
@@ -202,7 +204,7 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
         this.setName(route.getName());
         this.setCreatedDate(route.getCreatedDate());
         this.setTravelDate(route.getTravelDate());
-        this.setSuccessfulRoute(route.isSuccessfulRoute());
+        this.setSuccessfulRoute(route.is_SuccessfulRoute());
         this.setProblemdescription(route.getProblemdescription());
         this.setCommentaries(route.getCommentaries());
     }

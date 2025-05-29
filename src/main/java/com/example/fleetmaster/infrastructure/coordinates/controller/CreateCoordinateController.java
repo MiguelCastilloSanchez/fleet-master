@@ -12,7 +12,9 @@ import com.example.fleetmaster.infrastructure.coordinates.dto.CoordinateRegistra
 import com.example.fleetmaster.usecase.coordinates.CreateCoordinateUseCase;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class CreateCoordinateController {
 

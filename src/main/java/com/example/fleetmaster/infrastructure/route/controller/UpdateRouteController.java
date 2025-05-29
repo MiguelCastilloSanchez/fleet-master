@@ -14,7 +14,9 @@ import com.example.fleetmaster.infrastructure.route.dto.RouteUpdateData;
 import com.example.fleetmaster.usecase.route.UpdateRouteUseCase;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class UpdateRouteController {
 
@@ -26,5 +28,4 @@ public class UpdateRouteController {
     public RoutePublicData updateRoute(@PathVariable Long id, @Valid @RequestBody RouteUpdateData data) throws RouteNotFoundException {
         return new RoutePublicData(updateRouteUseCase.execute(id, data));
     }
-
 }

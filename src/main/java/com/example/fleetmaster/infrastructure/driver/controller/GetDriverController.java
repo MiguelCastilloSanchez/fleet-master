@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.fleetmaster.entity.driver.exception.DriverNotFoundException;
 import com.example.fleetmaster.infrastructure.driver.dto.DriverPublicData;
 import com.example.fleetmaster.usecase.driver.GetDriverCaseUse;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class GetDriverController {
     

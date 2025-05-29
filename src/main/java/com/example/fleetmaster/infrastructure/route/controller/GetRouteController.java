@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.fleetmaster.entity.route.exception.RouteNotFoundException;
 import com.example.fleetmaster.infrastructure.route.dto.RoutePublicData;
 import com.example.fleetmaster.usecase.route.GetRouteUseCase;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class GetRouteController {
 

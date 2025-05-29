@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.example.fleetmaster.entity.assigment.exception.AssignmentNotFoundException;
 import com.example.fleetmaster.entity.coordinates.exception.CoordinateNotFoundException;
 import com.example.fleetmaster.entity.route.exception.RouteNotFoundException;
 import com.example.fleetmaster.entity.route.gateway.RouteGateway;
@@ -51,7 +52,18 @@ public class RouteDatabaseGateway implements RouteGateway {
         RouteSchema schema = this.routeRepository.findById(route.getId()).orElseThrow(RouteNotFoundException::new);
         schema.updateRoute(route);
         schema.setProblemdescription(route.getProblemdescription());
-        schema.setSuccessfulRoute(route.isSuccessfulRoute());
+        schema.setSuccessfulRoute(route.is_SuccessfulRoute());
+
+        System.out.println("RouteDbGtway > Route.getAsingId: " + route.getAssignmentId());
+        AssignmentSchema assignmentSchema = this.assignmentRepository.findById(route.getAssignmentId())
+                .orElseThrow(AssignmentNotFoundException::new);
+        schema.setAssignment(assignmentSchema);
+        ;
+
+        CoordinateSchema coordinateSchema = this.coordinateRepository.findById(route.getEndLocationId())
+                .orElseThrow(CoordinateNotFoundException::new);
+        schema.setEndLocation(coordinateSchema);
+
         return this.routeRepository.save(schema).toUpdateRoute();
     }
 

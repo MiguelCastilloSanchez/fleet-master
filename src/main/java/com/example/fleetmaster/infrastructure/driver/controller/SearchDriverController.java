@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.fleetmaster.entity.driver.model.Driver;
 import com.example.fleetmaster.infrastructure.driver.dto.DriverPublicData;
 import com.example.fleetmaster.usecase.driver.SearchDriverCaseUse;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class SearchDriverController {
     
