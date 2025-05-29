@@ -31,21 +31,19 @@ public class UpdateRouteUseCase {
         }
 
         if (data.endLocationId() != null) {
-            System.out.println("UpdateRouteUseCase ID_LOCATION: " + data.endLocationId());
             route.setEndLocationId(data.endLocationId());
         }
 
         if (data.assignmentId() != null) {
             AssignmentSchema assignmentSchema = assignmentRepository.findById(data.assignmentId())
                     .orElseThrow(AssignmentNotFoundException::new);
-
-                    
-
             route.setAssignment(assignmentSchema);
         }
 
+        System.out.println("UpdtRoutUsCas: data.isSuccessfulRoute: " + data.isSuccessfulRoute());
         if (data.isSuccessfulRoute() != null) {
             route.setSuccessfulRoute(Boolean.parseBoolean(data.isSuccessfulRoute()));
+            System.out.println("UpdtRoutUsCas: isSuccessfulRoute: " + route.is_SuccessfulRoute());
         }
 
         if (data.problemdescription() != null) {

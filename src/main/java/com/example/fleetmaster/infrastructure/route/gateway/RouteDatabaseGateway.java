@@ -21,71 +21,71 @@ import com.example.fleetmaster.entity.route.model.Route;
 @Component
 public class RouteDatabaseGateway implements RouteGateway {
 
-    @Autowired
-    private RouteRepository routeRepository;
+        @Autowired
+        private RouteRepository routeRepository;
 
-    @Autowired
-    private AssignmentRepository assignmentRepository;
+        @Autowired
+        private AssignmentRepository assignmentRepository;
 
-    @Autowired
-    private CoordinateRepository coordinateRepository;
+        @Autowired
+        private CoordinateRepository coordinateRepository;
 
-    @Override
-    public Route create(Route route) {
+        @Override
+        public Route create(Route route) {
 
-        CoordinateSchema coordinateSchema = coordinateRepository.findById(route.getEndLocationId())
-                .orElseThrow(CoordinateNotFoundException::new);
+                CoordinateSchema coordinateSchema = coordinateRepository.findById(route.getEndLocationId())
+                                .orElseThrow(CoordinateNotFoundException::new);
 
-        AssignmentSchema assignmentSchema = assignmentRepository.findById(route.getAssignmentId())
-                .orElseThrow(RouteNotFoundException::new);
+                AssignmentSchema assignmentSchema = assignmentRepository.findById(route.getAssignmentId())
+                                .orElseThrow(RouteNotFoundException::new);
 
-        return this.routeRepository.save(new RouteSchema(
-                route.getId(),
-                route.getName(),
-                route.getTravelDate(),
-                coordinateSchema,
-                assignmentSchema)).toRoute();
-    }
+                return this.routeRepository.save(new RouteSchema(
+                                route.getId(),
+                                route.getName(),
+                                route.getTravelDate(),
+                                coordinateSchema,
+                                assignmentSchema)).toRoute();
+        }
 
-    @Override
-    public Route update(Route route) {
-        RouteSchema schema = this.routeRepository.findById(route.getId()).orElseThrow(RouteNotFoundException::new);
-        schema.updateRoute(route);
-        schema.setProblemdescription(route.getProblemdescription());
-        schema.setSuccessfulRoute(route.is_SuccessfulRoute());
+        @Override
+        public Route update(Route route) {
+                RouteSchema schema = this.routeRepository.findById(route.getId())
+                                .orElseThrow(RouteNotFoundException::new);
+                schema.updateRoute(route);
+                schema.setProblemdescription(route.getProblemdescription());
+                schema.setSuccessfulRoute(route.is_SuccessfulRoute());
 
-        System.out.println("RouteDbGtway > Route.getAsingId: " + route.getAssignmentId());
-        AssignmentSchema assignmentSchema = this.assignmentRepository.findById(route.getAssignmentId())
-                .orElseThrow(AssignmentNotFoundException::new);
-        schema.setAssignment(assignmentSchema);
-        ;
+                AssignmentSchema assignmentSchema = this.assignmentRepository.findById(route.getAssignmentId())
+                                .orElseThrow(AssignmentNotFoundException::new);
+                schema.setAssignment(assignmentSchema);
+                ;
 
-        CoordinateSchema coordinateSchema = this.coordinateRepository.findById(route.getEndLocationId())
-                .orElseThrow(CoordinateNotFoundException::new);
-        schema.setEndLocation(coordinateSchema);
+                CoordinateSchema coordinateSchema = this.coordinateRepository.findById(route.getEndLocationId())
+                                .orElseThrow(CoordinateNotFoundException::new);
+                schema.setEndLocation(coordinateSchema);
 
-        return this.routeRepository.save(schema).toUpdateRoute();
-    }
+                return this.routeRepository.save(schema).toUpdateRoute();
+        }
 
-    @Override
-    public void delete(Long id) {
-        this.routeRepository.deleteById(id);
-    }
+        @Override
+        public void delete(Long id) {
+                this.routeRepository.deleteById(id);
+        }
 
-    @Override
-    public Optional<Route> findById(Long id) {
-        return this.routeRepository
-                .findById(id)
-                .map(RouteSchema::toRoute);
-    }
+        @Override
+        public Optional<Route> findById(Long id) {
+                return this.routeRepository
+                                .findById(id)
+                                .map(RouteSchema::toUpdateRoute);
+        }
 
-    @Override
-    public List<Route> findAll() {
-        return routeRepository
-                .findAll()
-                .stream()
-                .map(RouteSchema::toRoute)
-                .toList();
-    }
+        @Override
+        public List<Route> findAll() {
+                return routeRepository
+                                .findAll()
+                                .stream()
+                                .map(RouteSchema::toUpdateRoute)
+                                .toList();
+        }
 
 }
