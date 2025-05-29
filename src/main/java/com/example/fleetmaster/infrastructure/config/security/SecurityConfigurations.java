@@ -1,5 +1,6 @@
 package com.example.fleetmaster.infrastructure.config.security;
 
+import java.beans.Customizer;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,13 @@ public class SecurityConfigurations {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
-                        .anyRequest().permitAll()
-                        //.anyRequest().authenticated()
+                       // .anyRequest().permitAll()
+                        .anyRequest().authenticated()
                 )
                 .build();
     }
@@ -46,7 +48,7 @@ public class SecurityConfigurations {
      @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://128.85.32.202"));
+        configuration.setAllowedOriginPatterns(List.of("*")); // o "*"
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
