@@ -48,6 +48,20 @@ public class Route extends AbstractEntity<Long> {
         this.commentaries = commentaries;
     }
 
+    public Route(String name, LocalDate createdDate, LocalDate travelDate, Long endLocationId, AssignmentSchema assignmentsSchema,
+            String problemdescription, Boolean successfulRoute, ArrayList<String> commentaries) {
+        this.name = name;
+        this.createdDate = createdDate;
+        this.travelDate = travelDate;
+        this.startLocationId = (long) 1;
+        this.endLocationId = endLocationId;
+        setAssignment(assignmentsSchema);
+        this.isSuccessfulRoute = successfulRoute;
+        setProblemdescription(problemdescription);
+        this.problemdescription = problemdescription;
+        this.commentaries = commentaries;
+    }
+
     public String getName() {
         return name;
     }

@@ -76,7 +76,7 @@ public class RouteDatabaseGateway implements RouteGateway {
     public Optional<Route> findById(Long id) {
         return this.routeRepository
                 .findById(id)
-                .map(RouteSchema::toRoute);
+                .map(RouteSchema::toUpdateRoute);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class RouteDatabaseGateway implements RouteGateway {
         return routeRepository
                 .findAll()
                 .stream()
-                .map(RouteSchema::toRoute)
+                .map(RouteSchema::toUpdateRoute)
                 .toList();
     }
 
