@@ -13,6 +13,9 @@ import com.example.fleetmaster.infrastructure.assignment.dto.AssignmentPublicDat
 import com.example.fleetmaster.usecase.assignment.CreateAssignmentUseCase;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+
 @CrossOrigin(origins = "*")
 @RestController
 public class CreateAssignmentController {
