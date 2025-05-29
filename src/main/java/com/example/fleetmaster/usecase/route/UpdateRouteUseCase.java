@@ -22,7 +22,6 @@ public class UpdateRouteUseCase {
 
     public Route execute(Long id, IRouteUpdateData data) throws RouteNotFoundException {
         Route route = this.routeGateway.findById(id).orElseThrow(RouteNotFoundException::new);
-
         if (data.name() != null && !data.name().isBlank()) {
             route.setName(data.name());
         }
@@ -32,30 +31,32 @@ public class UpdateRouteUseCase {
         }
 
         if (data.endLocationId() != null) {
+            System.out.println("UpdateRouteUseCase ID_LOCATION: " + data.endLocationId());
             route.setEndLocationId(data.endLocationId());
         }
 
         if (data.assignmentId() != null) {
             AssignmentSchema assignmentSchema = assignmentRepository.findById(data.assignmentId())
                     .orElseThrow(AssignmentNotFoundException::new);
+
+                    
+
             route.setAssignment(assignmentSchema);
         }
 
-        if (data.isSuccessfulRoute() != 0) {
-            route.setSuccessfulRoute(false);
-        } else {
-            route.setSuccessfulRoute(true);
+        if (data.isSuccessfulRoute() != null) {
+            route.setSuccessfulRoute(Boolean.parseBoolean(data.isSuccessfulRoute()));
         }
 
         if (data.problemdescription() != null) {
             route.setProblemdescription(data.problemdescription());
-            System.out.println("Problemdescription: " + data.problemdescription()); 
-            System.out.println(route.getProblemdescription()); 
         }
 
         if (data.commentaries() != null && !data.commentaries().isBlank()) {
             route.addCommentary(data.commentaries());
         }
+
+        System.out.println("UpdtRoutUsCas: idAsing: " + route.getAssignmentId());
 
         return this.routeGateway.update(route);
     }
