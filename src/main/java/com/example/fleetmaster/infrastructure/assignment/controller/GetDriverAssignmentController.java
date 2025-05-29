@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.fleetmaster.infrastructure.assignment.dto.AssignmentPublicData;
 import com.example.fleetmaster.usecase.assignment.GetDriverAssignmentUseCase;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 @CrossOrigin(origins = "*")
 @RestController

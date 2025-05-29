@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.fleetmaster.entity.assigment.model.Assignment;
 import com.example.fleetmaster.infrastructure.assignment.dto.AssignmentPublicData;
 import com.example.fleetmaster.usecase.assignment.SearchAssignmentUseCase;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = "*")
 @RestController
