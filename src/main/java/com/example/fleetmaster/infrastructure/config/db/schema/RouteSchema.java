@@ -181,7 +181,6 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
                 this.isSuccessfulRoute(),
                 this.getCommentaries());
         route.setId(this.getId());
-        System.out.println("RouteSchema > toRoute > endLocationId: " + route.getEndLocationId());
         return route;
     }
 
@@ -195,9 +194,7 @@ public class RouteSchema extends AbstractEntitySchema<Long> {
                 this.getProblemdescription(),
                 this.isSuccessfulRoute(),
                 this.getCommentaries());
-        route.setId(this.getId());
-        System.out.println("RouteSchema > toUpdateRoute > endLocationId: " + route.getEndLocationId());
-        
+        route.setId(this.getId());        
         return route;
     }
 
