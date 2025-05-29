@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.fleetmaster.entity.assigment.exception.AssignmentNotFoundException;
 import com.example.fleetmaster.infrastructure.assignment.dto.AssignmentPublicData;
 import com.example.fleetmaster.usecase.assignment.DeleteAssignmentUseCase;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class DeleteAssignmentController {
     
